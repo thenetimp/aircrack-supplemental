@@ -1,0 +1,5 @@
+# Set the name of your wireless interface here.
+export landevice="wlan0"
+
+# Do not delete this line.
+source bash_functions
